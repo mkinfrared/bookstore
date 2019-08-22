@@ -4,10 +4,15 @@
     "tslint-plugin-prettier",
     "tslint-config-prettier"
   ],
+  "linterOptions": {
+    "exclude": ["**/**/build/*"]
+  },
   "rules": {
     "class-name": true,
     "comment-format": [true, "check-space"],
     "indent": [true, "spaces"],
+    "member-access": false,
+    "object-literal-sort-keys": false,
     "ordered-imports": {
       "options": [
         {
@@ -109,7 +114,7 @@
   "only-arrow-functions": true,
   "prefer-object-spread": true,
   "eofline": true,
-  "object-literal-sort-keys": true,
+  "object-literal-sort-keys": false,
   "file-name-casing": [true, "camel-case"],
   "newline-before-return": true,
   "no-consecutive-blank-lines": true,

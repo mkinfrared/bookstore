@@ -11,6 +11,7 @@
       "@middleware/*": ["middleware/*"],
       "@public/*": ["public/*"],
       "@routes/*": ["routes/*"],
+      "@type/*": ["type/*"],
       "@util/*": ["util/*"]
     },
     "plugins": [{ "transform": "typescript-transform-paths" }]

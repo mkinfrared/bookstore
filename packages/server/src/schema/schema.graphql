@@ -1,0 +1,7 @@
+type Query {
+  hello(name: String): String!
+}
+
+type Mutation {
+  register(email: String!, username: String!, password: String!): Boolean
+}
