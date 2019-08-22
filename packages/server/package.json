@@ -7,9 +7,9 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:ts && yarn copy-static-assets",
     "serve": "node build/server.js",
-    "start": "cross-env NODE_ENV=development ts-node-dev --clear -C ttypescript src/server.ts",
+    "start": "cross-env NODE_ENV=development yarn gen-schema-types && ts-node-dev --clear -C ttypescript src/server.ts",
     "test": "jest --forceExit --coverage --verbose",
-    "build:ts": "ttsc",
+    "build:ts": "yarn gen-schema-types && ttsc",
     "watch:ts": "ttsc -w",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
     "coverage": "open-cli ./coverage/lcov-report/index.html",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@bookstore/common": "0.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "dotenv": "^8.1.0",
@@ -31,6 +32,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.17.1",
     "@types/compression": "^1.0.1",
     "@types/dotenv": "^6.1.1",
