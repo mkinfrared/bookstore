@@ -1,0 +1,15 @@
+{
+  "name": "@bookstore/common",
+  "version": "0.0.1",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.41",
+    "ttypescript": "^1.5.7"
+  },
+  "scripts": {
+    "start": "ttsc -w",
+    "build": "ttsc"
+  }
+}

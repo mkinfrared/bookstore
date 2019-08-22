@@ -1,0 +1,9 @@
+{
+  "extends": ["../../tslint.json", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": ["src/serviceWorker.ts"]
+  },
+  "rules": {
+    "no-console": true
+  }
+}
