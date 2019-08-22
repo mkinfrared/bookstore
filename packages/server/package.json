@@ -12,7 +12,8 @@
     "build:ts": "ttsc",
     "watch:ts": "ttsc -w",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
-    "coverage": "open-cli ./coverage/lcov-report/index.html"
+    "coverage": "open-cli ./coverage/lcov-report/index.html",
+    "gen-schema-types": "gql2ts ./src/schema/schema.graphql -o src/type/schema.d.ts"
   },
   "dependencies": {
     "@bookstore/common": "0.0.1",
@@ -21,11 +22,13 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "graphql-import": "^0.7.1",
     "graphql-yoga": "^1.18.2",
     "lusca": "^1.6.1",
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.18"
+    "typeorm": "^0.2.18",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
@@ -38,8 +41,10 @@
     "@types/node": "^12.7.2",
     "@types/shelljs": "^0.8.5",
     "@types/supertest": "^2.0.8",
+    "@types/uuid": "^3.4.5",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
+    "gql2ts": "^1.10.1",
     "jest": "24.8.0",
     "open-cli": "^5.0.0",
     "shelljs": "^0.8.3",

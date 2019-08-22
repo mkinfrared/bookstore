@@ -11,7 +11,7 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  logging: false,
+  logging: process.env.NODE_ENV !== "production",
   dropSchema: true,
   entities: ["src/db/entity/**/*.ts"],
   migrations: ["src/db/migration/**/*.ts"],
