@@ -10,6 +10,7 @@
       "@db/*": ["db/*"],
       "@middleware/*": ["middleware/*"],
       "@public/*": ["public/*"],
+      "@resolvers/*": ["resolvers/*"],
       "@routes/*": ["routes/*"],
       "@type/*": ["type/*"],
       "@util/*": ["util/*"]
