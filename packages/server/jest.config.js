@@ -4,11 +4,15 @@ module.exports = {
       tsConfig: "tsconfig.json"
     }
   },
+  setupFilesAfterEnv: ["<rootDir>/src/test/setupTest.ts"],
   moduleNameMapper: {
     "@controllers/(.*)": "<rootDir>/src/controllers/$1",
     "@db/(.*)": "<rootDir>/src/db/$1",
     "@middlewares/(.*)": "<rootDir>/src/middlewares/$1",
+    "@resolvers/(.*)": "<rootDir>/src/resolvers/$1",
     "@routes/(.*)": "<rootDir>/src/routes/$1",
+    "@schema/(.*)": "<rootDir>/src/schema/$1",
+    "@type/(.*)": "<rootDir>/src/type/$1",
     "@util/(.*)": "<rootDir>/src/util/$1"
   },
   moduleFileExtensions: ["ts", "js"],

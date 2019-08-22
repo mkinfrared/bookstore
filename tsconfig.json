@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "target": "es6",
     "module": "commonjs",
     "lib": ["dom", "es2017", "esnext"],
