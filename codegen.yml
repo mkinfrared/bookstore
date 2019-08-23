@@ -1,0 +1,17 @@
+overwrite: true
+schema: "packages/server/src/resolvers/**/*.graphql"
+documents: null
+generates:
+  packages/server/src/generated/graphql.d.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-resolvers"
+      - "fragment-matcher"
+  packages/web/src/generated/graphql.d.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-resolvers"
+      - "typescript-react-apollo"
+      - "fragment-matcher"

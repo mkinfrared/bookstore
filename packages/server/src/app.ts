@@ -1,16 +1,11 @@
-import { resolvers } from "@resolvers/resolvers";
+import getSchema from "@util/getSchema";
 import { SERVER_ADDRESS, SERVER_PORT } from "@util/secrets";
-import { importSchema } from "graphql-import";
 import { GraphQLServer, Options } from "graphql-yoga";
-import path from "path";
 
 export let server: GraphQLServer;
 
 export const startServer = async () => {
-  const typeDefs = importSchema(
-    path.join(__dirname, "./schema/schema.graphql")
-  );
-  server = new GraphQLServer({ typeDefs, resolvers });
+  server = new GraphQLServer({ schema: getSchema() });
   const options: Options = {
     playground: "/graphql",
     port: SERVER_PORT

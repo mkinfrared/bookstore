@@ -4,9 +4,6 @@
     "tslint-plugin-prettier",
     "tslint-config-prettier"
   ],
-  "linterOptions": {
-    "exclude": ["**/**/build/*"]
-  },
   "rules": {
     "class-name": true,
     "comment-format": [true, "check-space"],
@@ -53,6 +50,7 @@
         "variable-declaration": "onespace"
       }
     ],
+    "interface-name": false,
     "no-internal-module": true,
     "no-trailing-whitespace": false,
     "no-null-keyword": true,
