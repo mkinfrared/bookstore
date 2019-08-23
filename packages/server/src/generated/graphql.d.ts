@@ -13,9 +13,15 @@ export interface Scalars {
   Float: number;
 }
 
+export interface Error {
+  __typename?: "Error";
+  path: Scalars["String"];
+  message: Scalars["String"];
+}
+
 export interface Mutation {
   __typename?: "Mutation";
-  register?: Maybe<Scalars["Boolean"]>;
+  register?: Maybe<Error[]>;
 }
 
 export interface MutationRegisterArgs {
@@ -26,15 +32,7 @@ export interface MutationRegisterArgs {
 
 export interface Query {
   __typename?: "Query";
-  check?: Maybe<Scalars["Boolean"]>;
-  hello?: Maybe<Scalars["String"]>;
-}
-
-export interface QueryHelloArgs {
-  num: Scalars["Int"];
-  name: Scalars["String"];
-  valid: Scalars["Boolean"];
-  id: Scalars["ID"];
+  test?: Maybe<Scalars["Boolean"]>;
 }
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -142,20 +140,26 @@ export type DirectiveResolverFn<
 export interface ResolversTypes {
   Query: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
-  Int: ResolverTypeWrapper<Scalars["Int"]>;
-  String: ResolverTypeWrapper<Scalars["String"]>;
-  ID: ResolverTypeWrapper<Scalars["ID"]>;
   Mutation: ResolverTypeWrapper<{}>;
+  String: ResolverTypeWrapper<Scalars["String"]>;
+  Error: ResolverTypeWrapper<Error>;
 }
 
 /** Mapping between all available schema types and the resolvers parents */
 export interface ResolversParentTypes {
   Query: {};
   Boolean: Scalars["Boolean"];
-  Int: Scalars["Int"];
-  String: Scalars["String"];
-  ID: Scalars["ID"];
   Mutation: {};
+  String: Scalars["String"];
+  Error: Error;
+}
+
+export interface ErrorResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["Error"] = ResolversParentTypes["Error"]
+> {
+  path?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  message?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
 }
 
 export interface MutationResolvers<
@@ -163,7 +167,7 @@ export interface MutationResolvers<
   ParentType extends ResolversParentTypes["Mutation"] = ResolversParentTypes["Mutation"]
 > {
   register?: Resolver<
-    Maybe<ResolversTypes["Boolean"]>,
+    Maybe<Array<ResolversTypes["Error"]>>,
     ParentType,
     ContextType,
     RequireFields<MutationRegisterArgs, "email" | "username" | "password">
@@ -174,16 +178,11 @@ export interface QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
 > {
-  check?: Resolver<Maybe<ResolversTypes["Boolean"]>, ParentType, ContextType>;
-  hello?: Resolver<
-    Maybe<ResolversTypes["String"]>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryHelloArgs, "num" | "name" | "valid" | "id">
-  >;
+  test?: Resolver<Maybe<ResolversTypes["Boolean"]>, ParentType, ContextType>;
 }
 
 export interface Resolvers<ContextType = any> {
+  Error?: ErrorResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }

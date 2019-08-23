@@ -25,7 +25,7 @@
     "lint": "yarn lint:styles && tslint --fix packages/**/*.ts?(x)",
     "lint:styles": "stylelint \"**/*.scss\" --syntax scss --fix",
     "prettier": "prettier --write packages/**/*.ts?(x)",
-    "precommit": "yarn prettier && yarn lint",
+    "precommit": "yarn test && yarn prettier && yarn lint",
     "postmerge": "lerna version --conventional-commits --yes",
     "generate": "graphql-codegen --config codegen.yml"
   },

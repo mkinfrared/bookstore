@@ -9,9 +9,9 @@ export default () => {
     const typeDefs = importSchema(
       path.join(__dirname, `../resolvers/${folder}/schema.graphql`)
     );
-    const resolvers = require(`../resolvers/${folder}`);
+    const resolver = require(`../resolvers/${folder}`);
 
-    return makeExecutableSchema({ resolvers, typeDefs });
+    return makeExecutableSchema({ resolvers: resolver, typeDefs });
   });
 
   return mergeSchemas({ schemas });

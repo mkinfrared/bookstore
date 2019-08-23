@@ -31,7 +31,7 @@
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "uuid": "^3.3.3"
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -45,7 +45,7 @@
     "@types/node": "^12.7.2",
     "@types/shelljs": "^0.8.5",
     "@types/supertest": "^2.0.8",
-    "@types/uuid": "^3.4.5",
+    "@types/yup": "^0.26.23",
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "cross-env": "^5.2.0",

@@ -2,10 +2,8 @@ import getSchema from "@util/getSchema";
 import { SERVER_ADDRESS, SERVER_PORT } from "@util/secrets";
 import { GraphQLServer, Options } from "graphql-yoga";
 
-export let server: GraphQLServer;
-
 export const startServer = async () => {
-  server = new GraphQLServer({ schema: getSchema() });
+  const server = new GraphQLServer({ schema: getSchema() });
   const options: Options = {
     playground: "/graphql",
     port: SERVER_PORT
