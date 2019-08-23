@@ -8,6 +8,7 @@
     "paths": {
       "@controllers/*": ["controllers/*"],
       "@db/*": ["db/*"],
+      "@generated/*": ["generated/*"],
       "@middleware/*": ["middleware/*"],
       "@public/*": ["public/*"],
       "@resolvers/*": ["resolvers/*"],

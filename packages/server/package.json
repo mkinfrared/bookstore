@@ -7,14 +7,13 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:ts && yarn copy-static-assets",
     "serve": "node build/server.js",
-    "start": "yarn gen-schema-types && ts-node-dev --clear -C ttypescript src/server.ts",
+    "start": "ts-node-dev --clear -C ttypescript src/server.ts",
     "test": "cross-env NODE_ENV=test jest --forceExit --coverage --verbose",
     "test:server": "cross-env NODE_ENV=test ts-node src/server.ts",
     "ci": "start-server-and-test test:server http://localhost:4001 test",
-    "build:ts": "yarn gen-schema-types && ttsc",
+    "build:ts": "ttsc",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
-    "coverage": "open-cli ./coverage/lcov-report/index.html",
-    "gen-schema-types": "gql2ts ./src/schema/schema.graphql -o src/type/schema.d.ts"
+    "coverage": "open-cli ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "@bookstore/common": "0.0.1",
@@ -24,13 +23,15 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "graphql": "^14.5.0",
     "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.5",
     "graphql-yoga": "^1.18.2",
     "lusca": "^1.6.1",
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.18",
-    "uuid": "^3.3.3"
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -44,7 +45,7 @@
     "@types/node": "^12.7.2",
     "@types/shelljs": "^0.8.5",
     "@types/supertest": "^2.0.8",
-    "@types/uuid": "^3.4.5",
+    "@types/yup": "^0.26.23",
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "cross-env": "^5.2.0",
