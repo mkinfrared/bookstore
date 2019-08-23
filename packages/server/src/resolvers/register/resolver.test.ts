@@ -12,7 +12,7 @@ const mutation = `
 }
 `;
 
-describe("register resolver", () => {
+describe("register register", () => {
   it("should create user in database and return true", async () => {
     const response = await request(SERVER_HOST, mutation);
 

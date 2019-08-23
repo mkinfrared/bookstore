@@ -7,14 +7,13 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn build:ts && yarn copy-static-assets",
     "serve": "node build/server.js",
-    "start": "yarn gen-schema-types && ts-node-dev --clear -C ttypescript src/server.ts",
+    "start": "ts-node-dev --clear -C ttypescript src/server.ts",
     "test": "cross-env NODE_ENV=test jest --forceExit --coverage --verbose",
     "test:server": "cross-env NODE_ENV=test ts-node src/server.ts",
     "ci": "start-server-and-test test:server http://localhost:4001 test",
-    "build:ts": "yarn gen-schema-types && ttsc",
+    "build:ts": "ttsc",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
-    "coverage": "open-cli ./coverage/lcov-report/index.html",
-    "gen-schema-types": "gql2ts ./src/schema/schema.graphql -o src/type/schema.d.ts"
+    "coverage": "open-cli ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "@bookstore/common": "0.0.1",
@@ -24,7 +23,9 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
+    "graphql": "^14.5.0",
     "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.5",
     "graphql-yoga": "^1.18.2",
     "lusca": "^1.6.1",
     "pg": "^7.12.1",

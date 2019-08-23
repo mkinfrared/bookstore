@@ -11,14 +11,14 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
-    "build:web": "cd packages/web && yarn build",
-    "build:server": "cd packages/server && yarn build",
+    "build": "yarn generate && lerna run build",
+    "build:web": "yarn generate && cd packages/web && yarn build",
+    "build:server": "yarn generate && cd packages/server && yarn build",
     "build:common": "cd packages/common && yarn build",
     "start": "yarn start:common && yarn start:server && yarn start:web",
     "start:common": "cd packages/common && yarn start",
-    "start:server": "cd packages/server && yarn start",
-    "start:web": "cd packages/web && yarn start",
+    "start:server": "yarn generate && cd packages/server && yarn start",
+    "start:web": "yarn generate && cd packages/web && yarn start",
     "test": "lerna run test",
     "test:web": "cd packages/web && yarn test",
     "test:server": "cd packages/server && yarn test",
@@ -26,9 +26,11 @@
     "lint:styles": "stylelint \"**/*.scss\" --syntax scss --fix",
     "prettier": "prettier --write packages/**/*.ts?(x)",
     "precommit": "yarn prettier && yarn lint",
-    "postmerge": "lerna version --conventional-commits --yes"
+    "postmerge": "lerna version --conventional-commits --yes",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.6.1",
     "husky": "^3.0.4",
     "lerna": "^3.16.4",
     "prettier": "^1.18.2",
@@ -38,6 +40,11 @@
     "tslint": "^5.19.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "@graphql-codegen/typescript": "1.6.1",
+    "@graphql-codegen/typescript-operations": "1.6.1",
+    "@graphql-codegen/typescript-resolvers": "1.6.1",
+    "@graphql-codegen/typescript-react-apollo": "1.6.1",
+    "@graphql-codegen/fragment-matcher": "1.6.1"
   }
 }
