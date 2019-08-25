@@ -1,9 +1,18 @@
+import { Server } from "@type/Server";
 import getSchema from "@util/getSchema";
+import { client } from "@util/redis";
 import { SERVER_ADDRESS, SERVER_PORT } from "@util/secrets";
 import { GraphQLServer, Options } from "graphql-yoga";
 
 export const startServer = async () => {
-  const server = new GraphQLServer({ schema: getSchema() });
+  const server: Server = new GraphQLServer({
+    schema: getSchema(),
+    context: ({ request }) => ({
+      redis: client,
+      request
+    })
+  });
+
   const options: Options = {
     playground: "/graphql",
     port: SERVER_PORT

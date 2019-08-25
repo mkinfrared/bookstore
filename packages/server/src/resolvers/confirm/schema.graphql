@@ -1,0 +1,7 @@
+type Query {
+  placeholder: Boolean
+}
+
+type Mutation {
+  confirm(id: String!): Boolean!
+}

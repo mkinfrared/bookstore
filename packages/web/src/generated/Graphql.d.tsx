@@ -1,4 +1,5 @@
 import { GraphQLResolveInfo } from "graphql";
+import gql from "graphql-tag";
 export type Maybe<T> = T | null;
 export type RequireFields<T, K extends keyof T> = {
   [X in Exclude<keyof T, K>]?: T[X];
@@ -21,7 +22,12 @@ export interface Error {
 
 export interface Mutation {
   __typename?: "Mutation";
+  confirm: Scalars["Boolean"];
   register?: Maybe<Error[]>;
+}
+
+export interface MutationConfirmArgs {
+  id: Scalars["String"];
 }
 
 export interface MutationRegisterArgs {
@@ -32,6 +38,7 @@ export interface MutationRegisterArgs {
 
 export interface Query {
   __typename?: "Query";
+  placeholder?: Maybe<Scalars["Boolean"]>;
   test?: Maybe<Scalars["Boolean"]>;
 }
 
@@ -166,6 +173,12 @@ export interface MutationResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Mutation"] = ResolversParentTypes["Mutation"]
 > {
+  confirm?: Resolver<
+    ResolversTypes["Boolean"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationConfirmArgs, "id">
+  >;
   register?: Resolver<
     Maybe<Array<ResolversTypes["Error"]>>,
     ParentType,
@@ -178,6 +191,11 @@ export interface QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
 > {
+  placeholder?: Resolver<
+    Maybe<ResolversTypes["Boolean"]>,
+    ParentType,
+    ContextType
+  >;
   test?: Resolver<Maybe<ResolversTypes["Boolean"]>, ParentType, ContextType>;
 }
 

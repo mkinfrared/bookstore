@@ -4,7 +4,7 @@ import { request } from "graphql-request";
 
 const email = "marklar@gmail.com";
 const username = "marklar";
-const password = "lebowski";
+const password = "foobar";
 
 const mutation = (e: string, p: string, u: string) => `
   mutation{
