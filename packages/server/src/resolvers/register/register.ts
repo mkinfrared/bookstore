@@ -1,5 +1,6 @@
 import { User } from "@db/entity/User";
-import { Resolvers } from "@generated/graphql";
+import { Resolvers } from "@generated/Graphql";
+import createConfirmationLink from "@util/createConfirmationLink";
 import formatYupError from "@util/formatYupError";
 import bcrypt from "bcryptjs";
 import * as yup from "yup";
@@ -18,7 +19,7 @@ const schema = yup.object().shape({
 
 const register: Resolvers = {
   Mutation: {
-    register: async (_, args) => {
+    register: async (parent, args, context) => {
       try {
         await schema.validate(args, { abortEarly: false });
       } catch (e) {
@@ -46,8 +47,9 @@ const register: Resolvers = {
 
       const hashedPassword = await bcrypt.hash(password, 12);
       const user = User.create({ email, username, password: hashedPassword });
-
       await user.save();
+      await createConfirmationLink(user.id, context.redis, context.request);
+
       return null;
     }
   }
