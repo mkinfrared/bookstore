@@ -1,6 +1,6 @@
 import { User } from "@db/entity/User";
 import registrationEmail from "@emails/registrationEmail";
-import { Resolvers } from "@generated/Graphql";
+import { Resolver } from "@type/Server";
 import createConfirmationLink from "@util/createConfirmationLink";
 import formatYupError from "@util/formatYupError";
 import { NODE_ENV } from "@util/secrets";
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
     .max(255)
 });
 
-const register: Resolvers = {
+const register: Resolver = {
   Mutation: {
     register: async (parent, args, context) => {
       try {

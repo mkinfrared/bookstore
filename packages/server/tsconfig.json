@@ -10,7 +10,7 @@
       "@controllers/*": ["controllers/*"],
       "@db/*": ["db/*"],
       "@emails/*": ["emails/*"],
-      "@generated/*": ["generated/*"],
+      "@messages/*": ["messages/*"],
       "@middleware/*": ["middleware/*"],
       "@public/*": ["public/*"],
       "@resolvers/*": ["resolvers/*"],

@@ -1,5 +1,5 @@
 type Query {
-  placeholder: Boolean
+  test: Boolean
 }
 
 type Mutation {
