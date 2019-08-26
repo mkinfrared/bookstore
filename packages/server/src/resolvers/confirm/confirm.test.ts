@@ -5,21 +5,21 @@ import { SERVER_HOST } from "@util/secrets";
 import request from "graphql-request";
 import { mockReq } from "sinon-express-mock";
 
-describe("confirm resolver", () => {
-  const email = "marklar@gmail.com";
-  const username = "marklar";
-  const password = "foobar";
-  const req = mockReq({
-    headers: {
-      host: "foobar"
-    }
-  });
-  const mutation = (id: string) => `
+const email = "marklar@gmail.com";
+const username = "marklar";
+const password = "foobar";
+const req = mockReq({
+  headers: {
+    host: "foobar"
+  }
+});
+export const mutation = (id: string) => `
   mutation{
     confirm(id: "${id}")
   }
 `;
 
+describe("confirm resolver", () => {
   beforeEach(() => {
     redis.flushall();
   });

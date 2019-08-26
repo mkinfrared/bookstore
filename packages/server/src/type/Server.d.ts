@@ -1,5 +1,5 @@
-import { Resolvers } from "@generated/Graphql";
-import { Request } from "express";
+import { Resolvers } from "@type/Graphql";
+import { Request, Express } from "express";
 import { GraphQLServer } from "graphql-yoga";
 import { ContextCallback } from "graphql-yoga/dist/types";
 import { Redis } from "ioredis";
@@ -14,3 +14,11 @@ export interface Context extends ContextCallback {
 }
 
 export interface Resolver extends Resolvers<Context> {}
+
+export interface SessionRequest extends Request {
+  session?: ServerSession;
+}
+
+export interface ServerSession extends Express.session {
+  userID?: string;
+}

@@ -6,7 +6,7 @@ const email = "marklar@gmail.com";
 const username = "marklar";
 const password = "foobar";
 
-const mutation = (e: string, p: string, u: string) => `
+export const mutation = (e: string, p: string, u: string) => `
   mutation{
   register(email: "${e}", username: "${u}", password: "${p}") {
     path
