@@ -9,6 +9,7 @@
     "paths": {
       "@controllers/*": ["controllers/*"],
       "@db/*": ["db/*"],
+      "@emails/*": ["emails/*"],
       "@generated/*": ["generated/*"],
       "@middleware/*": ["middleware/*"],
       "@public/*": ["public/*"],

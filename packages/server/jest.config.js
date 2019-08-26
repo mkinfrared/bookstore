@@ -8,7 +8,8 @@ module.exports = {
   moduleNameMapper: {
     "@controllers/(.*)": "<rootDir>/src/controllers/$1",
     "@db/(.*)": "<rootDir>/src/db/$1",
-    "@middlewares/(.*)": "<rootDir>/src/middlewares/$1",
+    "@emails/(.*)": "<rootDir>/src/emails/$1",
+    "@middleware/(.*)": "<rootDir>/src/middleware/$1",
     "@resolvers/(.*)": "<rootDir>/src/resolvers/$1",
     "@routes/(.*)": "<rootDir>/src/routes/$1",
     "@schema/(.*)": "<rootDir>/src/schema/$1",

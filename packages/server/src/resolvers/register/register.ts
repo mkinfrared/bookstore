@@ -1,7 +1,10 @@
 import { User } from "@db/entity/User";
+import registrationEmail from "@emails/registrationEmail";
 import { Resolvers } from "@generated/Graphql";
 import createConfirmationLink from "@util/createConfirmationLink";
 import formatYupError from "@util/formatYupError";
+import { NODE_ENV } from "@util/secrets";
+import sendEmail from "@util/sendEmail";
 import bcrypt from "bcryptjs";
 import * as yup from "yup";
 
@@ -48,7 +51,20 @@ const register: Resolvers = {
       const hashedPassword = await bcrypt.hash(password, 12);
       const user = User.create({ email, username, password: hashedPassword });
       await user.save();
-      await createConfirmationLink(user.id, context.redis, context.request);
+      const link = await createConfirmationLink(
+        user.id,
+        context.redis,
+        context.request
+      );
+
+      if (NODE_ENV !== "test") {
+        await sendEmail(
+          email,
+          "Registration",
+          "Confirm your registration",
+          registrationEmail(link)
+        );
+      }
 
       return null;
     }
