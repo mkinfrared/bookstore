@@ -1,6 +1,7 @@
 {
   "name": "@bookstore/server",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.1.0",
   "description": "A starting point for Node.js express apps with TypeScript",
   "main": "build/server.js",
   "license": "MIT",
@@ -16,7 +17,7 @@
     "coverage": "open-cli ./coverage/lcov-report/index.html"
   },
   "dependencies": {
-    "@bookstore/common": "0.0.1",
+    "@bookstore/common": "^0.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
@@ -59,6 +60,7 @@
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "cross-env": "^5.2.0",
+    "fetch-cookie": "^0.7.3",
     "gql2ts": "^1.10.1",
     "graphql-request": "^1.8.2",
     "jest": "24.8.0",
