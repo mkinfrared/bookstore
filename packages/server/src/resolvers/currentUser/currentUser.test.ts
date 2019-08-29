@@ -1,4 +1,3 @@
-require("fetch-cookie/node-fetch")(require("node-fetch"));
 import { User } from "@db/entity/User";
 import {
   currentUserMutation,

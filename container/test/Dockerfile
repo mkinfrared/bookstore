@@ -45,4 +45,5 @@ ENV COMPANY_EMAIL="marklar@test.com"
 #CORS
 ENV FRONTEND_HOST="http://localhost:3000"
 
+CMD ["yarn", "lint"]
 CMD ["yarn",  "test"]

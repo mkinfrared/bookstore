@@ -39,6 +39,5 @@ jobs:
       script: docker-compose run build
 
     - stage: version
-      if: branch = dev
       before_script: docker-compose build version
       script: docker-compose run version

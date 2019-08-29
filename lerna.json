@@ -1,7 +1,5 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent",
@@ -11,6 +9,14 @@
       "yes": true,
       "allowBranch": "dev",
       "amend": true
+    }
+  },
+  "changelog": {
+    "labels": {
+      "enhancement": ":rocket: New Feature",
+      "core": ":earth_asia: Core",
+      "bug": ":bug: Bug Fix",
+      "documentation": ":memo: Documentation"
     }
   }
 }
