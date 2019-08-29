@@ -1,25 +1,17 @@
 import { User } from "@db/entity/User";
 import { emailNotVerified, invalidLogin } from "@messages/messages";
-import { mutation as register } from "@resolvers/register/register.test";
+import { loginMutation, registerMutation } from "@test/heplers";
 import { redis } from "@util/redis";
 import { SERVER_HOST } from "@util/secrets";
 import request from "graphql-request";
 
-describe("login resolver", () => {
-  const username = "marklar";
-  const email = "marklar@test.com";
-  const password = "foobar";
-  const mutation = (u: string, p: string) => `
-    mutation {
-      login(username: "${u}", password: "${p}") {
-        path
-        message
-      }
-    }
-  `;
+const username = "marklar";
+const email = "marklar@test.com";
+const password = "foobar";
 
+describe("login resolver", () => {
   beforeEach(async () => {
-    await request(SERVER_HOST, register(email, password, username));
+    await request(SERVER_HOST, registerMutation(email, password, username));
     await redis.flushall();
   });
 
@@ -31,7 +23,10 @@ describe("login resolver", () => {
     user!.confirmed = true;
     await user!.save();
 
-    const response = await request(SERVER_HOST, mutation(username, password));
+    const response = await request(
+      SERVER_HOST,
+      loginMutation(username, password)
+    );
 
     expect(response.login).toBe(null);
   });
@@ -44,7 +39,10 @@ describe("login resolver", () => {
     user!.confirmed = true;
     await user!.save();
 
-    const response = await request(SERVER_HOST, mutation(username, "password"));
+    const response = await request(
+      SERVER_HOST,
+      loginMutation(username, "password")
+    );
 
     expect(response.login[0].message).toBe(invalidLogin);
     expect(response.login[0].path).toBe("username");
@@ -58,7 +56,10 @@ describe("login resolver", () => {
     user!.confirmed = true;
     await user!.save();
 
-    const response = await request(SERVER_HOST, mutation("username", password));
+    const response = await request(
+      SERVER_HOST,
+      loginMutation("username", password)
+    );
 
     expect(response.login[0].message).toBe(invalidLogin);
     expect(response.login[0].path).toBe("username");
@@ -69,7 +70,10 @@ describe("login resolver", () => {
 
     expect(user).toBeDefined();
 
-    const response = await request(SERVER_HOST, mutation(username, password));
+    const response = await request(
+      SERVER_HOST,
+      loginMutation(username, password)
+    );
 
     expect(response.login[0].message).toBe(emailNotVerified);
     expect(response.login[0].path).toBe("username");

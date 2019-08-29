@@ -9,6 +9,7 @@ let connection: Connection;
 
 beforeAll(async () => {
   connection = await createOrmConnection();
+  await connection.synchronize();
   httpServer = await startServer();
 });
 

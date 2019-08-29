@@ -7,7 +7,10 @@
   "version": "independent",
   "command": {
     "version": {
-      "allowBranch": "master"
+      "conventionalCommits": true,
+      "yes": true,
+      "allowBranch": "dev",
+      "amend": true
     }
   }
 }
