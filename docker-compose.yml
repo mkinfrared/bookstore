@@ -25,7 +25,3 @@ services:
     build:
       context: .
       dockerfile: ./container/build/Dockerfile
-  version:
-    build:
-      context: .
-      dockerfile: ./container/version/Dockerfile
