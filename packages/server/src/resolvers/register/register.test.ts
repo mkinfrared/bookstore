@@ -1,25 +1,17 @@
 import { User } from "@db/entity/User";
 import { SERVER_HOST } from "@util/secrets";
 import { request } from "graphql-request";
+import { registerMutation } from "@test/heplers";
 
 const email = "marklar@gmail.com";
 const username = "marklar";
 const password = "foobar";
 
-export const mutation = (e: string, p: string, u: string) => `
-  mutation{
-  register(email: "${e}", username: "${u}", password: "${p}") {
-    path
-    message
-  }
-}
-`;
-
 describe("register resolver", () => {
   it("should create user in database and return null", async () => {
     const response = await request(
       SERVER_HOST,
-      mutation(email, password, username)
+      registerMutation(email, password, username)
     );
 
     expect(response).toMatchObject({ register: null });
@@ -33,13 +25,13 @@ describe("register resolver", () => {
   it("should return Error like type", async () => {
     const response = await request(
       SERVER_HOST,
-      mutation(email, password, username)
+      registerMutation(email, password, username)
     );
     expect(response).toMatchObject({ register: null });
 
     const response2 = await request(
       SERVER_HOST,
-      mutation(email, password, username)
+      registerMutation(email, password, username)
     );
     expect(response2.register).toHaveLength(1);
     expect(response2.register[0].path).toBe("email");
@@ -48,7 +40,7 @@ describe("register resolver", () => {
 
     const response3 = await request(
       SERVER_HOST,
-      mutation(mail, password, username)
+      registerMutation(mail, password, username)
     );
     expect(response3.register).toHaveLength(1);
     expect(response3.register[0].path).toBe("username");
@@ -57,13 +49,13 @@ describe("register resolver", () => {
   it("should return Error like type when email already exists", async () => {
     const response = await request(
       SERVER_HOST,
-      mutation(email, password, username)
+      registerMutation(email, password, username)
     );
     expect(response).toMatchObject({ register: null });
 
     const response2 = await request(
       SERVER_HOST,
-      mutation(email, password, username)
+      registerMutation(email, password, username)
     );
     expect(response2.register).toHaveLength(1);
     expect(response2.register[0].path).toBe("email");
@@ -72,7 +64,7 @@ describe("register resolver", () => {
   it("should return Error like type when username already exists", async () => {
     const response = await request(
       SERVER_HOST,
-      mutation(email, password, username)
+      registerMutation(email, password, username)
     );
 
     expect(response).toMatchObject({ register: null });
@@ -80,7 +72,7 @@ describe("register resolver", () => {
     const mail = "redrum@mail.com";
     const response2 = await request(
       SERVER_HOST,
-      mutation(mail, password, username)
+      registerMutation(mail, password, username)
     );
 
     expect(response2.register).toHaveLength(1);
@@ -92,7 +84,10 @@ describe("register resolver", () => {
     const pass = "foo";
     const name = "bar";
 
-    const response = await request(SERVER_HOST, mutation(mail, pass, name));
+    const response = await request(
+      SERVER_HOST,
+      registerMutation(mail, pass, name)
+    );
     expect(response.register).toHaveLength(3);
     expect(response.register[0].path).toBe("email");
     expect(response.register[1].path).toBe("password");

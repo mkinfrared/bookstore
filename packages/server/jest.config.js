@@ -14,6 +14,7 @@ module.exports = {
     "@resolvers/(.*)": "<rootDir>/src/resolvers/$1",
     "@routes/(.*)": "<rootDir>/src/routes/$1",
     "@schema/(.*)": "<rootDir>/src/schema/$1",
+    "@test/(.*)": "<rootDir>/src/test/$1",
     "@type/(.*)": "<rootDir>/src/type/$1",
     "@util/(.*)": "<rootDir>/src/util/$1"
   },

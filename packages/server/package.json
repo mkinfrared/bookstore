@@ -59,6 +59,7 @@
     "chai": "^4.2.0",
     "concurrently": "^4.1.2",
     "cross-env": "^5.2.0",
+    "fetch-cookie": "^0.7.3",
     "gql2ts": "^1.10.1",
     "graphql-request": "^1.8.2",
     "jest": "24.8.0",

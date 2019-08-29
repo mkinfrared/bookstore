@@ -1,0 +1,7 @@
+type Query {
+  test: Boolean
+}
+
+type Mutation {
+  logout: Boolean!
+}
