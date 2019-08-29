@@ -4,6 +4,7 @@ import { redis } from "@util/redis";
 import {
   FRONTEND_HOST,
   NODE_ENV,
+  REDIS_HOST,
   SERVER_ADDRESS,
   SERVER_PORT,
   SESSION_SECRET
@@ -34,13 +35,15 @@ export const startServer = async () => {
         secure: NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
       },
-      store: new RedisStore({})
+      store: new RedisStore({
+        host: REDIS_HOST
+      })
     })
   );
 
   const cors: CorsOptions = {
     credentials: true,
-    origin: [FRONTEND_HOST]
+    origin: [FRONTEND_HOST, "*"]
   };
 
   const options: Options = {
