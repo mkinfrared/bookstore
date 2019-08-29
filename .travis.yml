@@ -2,11 +2,8 @@ language: node
 
 sudo: required
 
-services:
-  - docker
-
 env:
- - COMPOSE_VERSION=1.5.2
+  - COMPOSE_VERSION=1.24.1
 
 before_install:
   # Docker Compose Install
@@ -14,27 +11,31 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   # Download and install Docker libs
-  - curl -L https://github.com/Ortus-Solutions/docker-buildfiles/archive/master.zip > docker.zip
-  - unzip docker.zip -d workbench
-  - mv workbench/docker-buildfiles-master workbench/docker
-  # CommandBox Keys
-  - sudo apt-key adv --keyserver keys.gnupg.net --recv 6DA70622
-  - sudo echo "deb http://downloads.ortussolutions.com/debs/noarch /" | sudo tee -a
-    /etc/apt/sources.list.d/commandbox.list
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  # Travis CI has its own postgres which conflicts with docker postgres
+  - sudo service postgresql stop
+
+stages:
+  - name: test
+  - name: build
+  - name: version
+    if: branch = master
+
 
 jobs:
   include:
     - stage: test
       before_script: docker-compose build test
-      script: docker-compose run test --exit-code-from test
+      script: docker-compose run test
 
     - stage: build
       before_script: docker-compose build test
-      script: docker-compose run build --exit-code-from test
+      script: docker-compose run build
 
     - stage: version
+      if: branch = master
       before_script: docker-compose build version
-      script: docker-compose run version --exit-code-from test
-      branches:
-        only:
-          - master
+      script: docker-compose run version

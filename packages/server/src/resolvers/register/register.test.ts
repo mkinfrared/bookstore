@@ -1,7 +1,7 @@
 import { User } from "@db/entity/User";
+import { registerMutation } from "@test/heplers";
 import { SERVER_HOST } from "@util/secrets";
 import { request } from "graphql-request";
-import { registerMutation } from "@test/heplers";
 
 const email = "marklar@gmail.com";
 const username = "marklar";

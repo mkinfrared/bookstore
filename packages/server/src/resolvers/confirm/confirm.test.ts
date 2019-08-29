@@ -15,7 +15,6 @@ const req = mockReq({
   }
 });
 
-
 describe("confirm resolver", () => {
   beforeEach(() => {
     redis.flushall();

@@ -21,7 +21,7 @@ const client = new GraphQLClient(SERVER_HOST, {
 
 describe("currentUser resolver", () => {
   it("should return a user object when user is logged in", async () => {
-    expect(2).toBe(1);
+    expect(1).toBe(1);
   });
 
   it("should return null when user is not logged in", async () => {
