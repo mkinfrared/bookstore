@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:11.5-alpine
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: test
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:5.0.5-alpine
+    ports:
+      - "6379:6379"
+  test:
+    build:
+      context: .
+      dockerfile: ./container/test/Dockerfile
+    links:
+      - "db:database"
+      - "redis:redis"
+    ports:
+      - "4000:4000"
+  build:
+    build:
+      context: .
+      dockerfile: ./container/build/Dockerfile

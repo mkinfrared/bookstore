@@ -1,4 +1,5 @@
 import { User } from "@db/entity/User";
+import { confirmMutation } from "@test/heplers";
 import createConfirmationLink from "@util/createConfirmationLink";
 import { redis } from "@util/redis";
 import { SERVER_HOST } from "@util/secrets";
@@ -13,11 +14,6 @@ const req = mockReq({
     host: "foobar"
   }
 });
-export const mutation = (id: string) => `
-  mutation{
-    confirm(id: "${id}")
-  }
-`;
 
 describe("confirm resolver", () => {
   beforeEach(() => {
@@ -40,7 +36,7 @@ describe("confirm resolver", () => {
 
     expect(userID).toBe(user.id);
 
-    const response = await request(SERVER_HOST, mutation(id));
+    const response = await request(SERVER_HOST, confirmMutation(id));
 
     await user.reload();
 
@@ -60,7 +56,7 @@ describe("confirm resolver", () => {
 
     expect(userID).toBe(null);
 
-    const response = await request(SERVER_HOST, mutation(id));
+    const response = await request(SERVER_HOST, confirmMutation(id));
 
     await user.reload();
 
@@ -73,7 +69,7 @@ describe("confirm resolver", () => {
 
     expect(userID).toBe("foobar");
 
-    const response2 = await request(SERVER_HOST, mutation(id));
+    const response2 = await request(SERVER_HOST, confirmMutation(id));
 
     await user.reload();
 
